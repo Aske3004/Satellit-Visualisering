@@ -12,3 +12,5 @@ float sat2Lat = pos2.getFloat("satlatitude");
 
 println(sat1Lon,sat1Lat);
 println(sat2Lon,sat2Lat);
+
+aegljbhsrbøesgf
