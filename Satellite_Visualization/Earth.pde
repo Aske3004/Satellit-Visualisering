@@ -10,15 +10,15 @@ class Earth {
 
   void create() {
     globe = createShape(SPHERE, r);
-    //earth = loadImage("earth.jpg");
-    //globe.setTexture(earth);
+    earth = loadImage("earth.jpg");
+    globe.setTexture(earth);
   }
 
   void update() {
     translate(width*0.5, height*0.5);
     rotateY(angle);
     angle += 0.03;
-    lights();
+    //lights();
     fill(200);
     noStroke();
     //sphere(r);
