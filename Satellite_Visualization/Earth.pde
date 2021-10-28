@@ -17,7 +17,7 @@ class Earth {
   void update() {
     translate(width*0.5, height*0.5);
     rotateY(angle);
-    angle += 0.03;
+    angle += 0.003;
     //lights();
     fill(200);
     noStroke();
