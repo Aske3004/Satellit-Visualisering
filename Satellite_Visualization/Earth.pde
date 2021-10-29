@@ -1,19 +1,16 @@
 class Earth {
   float rotationSpeed, earthRotate;
-
-  //real rotation speed of earth in radians
-  float radiansPerSecond = 0.00007/60;
-
+  
   //ratio. One second in program ten minutes in real life.
   float ratio = 10*60;
-
+  
+  //real rotation speed of earth in radians
+  float radiansPerSecond = ratio*0.00007/60;
 
   //multiply radius of earth by 0.031 to get r
   float r = 198;
   PImage earth;
   PShape globe;
-
-
 
   Earth() {
   }
@@ -22,18 +19,17 @@ class Earth {
     globe = createShape(SPHERE, r);
     earth = loadImage("earth.jpg");
     globe.setTexture(earth);
-
-    earthRotate = radiansPerSecond * ratio ;
-    
+    earthRotate = radiansPerSecond;
   }
 
   void update() {
+    pushMatrix();
     translate(width*0.5, height*0.5);
     rotateY(rotationSpeed);
-    rotationSpeed += earthRotate;
-
-    fill(200);
-    noStroke();
     shape(globe);
+    popMatrix();
+    rotationSpeed += earthRotate;
+    fill(200);
+    noStroke(); 
   }
 }

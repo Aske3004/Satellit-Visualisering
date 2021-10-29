@@ -42,16 +42,15 @@ class Satellite {
 
     //calculate speed of satellite //<>//
     angleB = PVector.angleBetween(position1, position2);
-    arcLength = angleB*radius;
-    speed = arcLength/60;
-    
-  }
+    speed = earth.ratio*angleB/60;
+}
 
   void update() {
     //rotate satellite around earth
     rotateAngle += speed;
-    
     pushMatrix();
+    translate(width/2,height/2);
+    rotateY(earth.rotationSpeed);
     rotate(rotateAngle, rAxis.x, rAxis.y, rAxis.z);
     translate(radius, 0, 0);
     box(5);
