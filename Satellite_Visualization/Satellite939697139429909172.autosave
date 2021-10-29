@@ -1,0 +1,69 @@
+class Satellite {
+  float rotation;
+  float radius = 10;
+  String link;
+  float angle;
+  float anglesPerSecond;
+  float theta;
+  float phi;
+  PVector startPos;
+  PVector pos = new PVector();
+  PVector rotateAxis = new PVector(0, 0, 0);  
+  PVector cross, nor;
+  
+  Satellite(String link) {
+    this.link=link;
+  }
+
+  void create() {
+    JSONObject j = loadJSONObject(link);
+    JSONArray positionsJson = j.getJSONArray("positions");
+
+    JSONObject pos1 = positionsJson.getJSONObject(0);
+    JSONObject pos2 = positionsJson.getJSONObject(1);
+
+    float sat1Lon = pos1.getFloat("satlongitude");
+    float sat1Lat = pos1.getFloat("satlatitude");
+
+    float sat2Lon = pos2.getFloat("satlongitude");
+    float sat2Lat = pos2.getFloat("satlatitude");
+
+    PVector sat1Pos = cartesian(sat1Lat, sat1Lon);
+    PVector sat2Pos = cartesian(sat2Lat, sat2Lon);
+    
+    startPos = sat1Pos;
+
+    cross = sat1Pos.cross(sat2Pos);
+    nor = cross.normalize();
+    angle = PVector.angleBetween(sat1Pos,sat2Pos);
+    
+    //println(angle);
+    
+    float anglePercent = angle/(2*PI);
+    float circumference = 2*PI*radius;
+    float arcLength = anglePercent * circumference;
+    float speed = arcLength;
+    
+}
+
+  PVector cartesian(float lat, float lon) {
+    float theta = radians(lat);
+    float phi = radians(lon)+PI;
+
+    float x = radius * cos(theta)*cos(phi);
+    float y = -radius * sin(theta);
+    float z = -radius * cos(theta)*sin(phi);
+
+    return new PVector(x, y, z);
+  }
+
+  void update() {
+    angle += anglesPerSecond;
+    pushMatrix();
+    translate(width / 2, height / 2);
+    rotate(angle, nor.x, nor.y, nor.z);
+    translate(startPos.x,startPos.y,startPos.z);
+    box(20);
+    popMatrix();
+  }
+}

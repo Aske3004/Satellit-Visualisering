@@ -1,7 +1,9 @@
 class Earth {
   float angle;
   Table table;
-  float r = 200;
+  
+  //multiply radius of earth by 0.031 to get r
+  float r = 198;
   PImage earth;
   PShape globe;
 
@@ -18,10 +20,8 @@ class Earth {
     translate(width*0.5, height*0.5);
     rotateY(angle);
     angle += 0.003;
-    //lights();
     fill(200);
     noStroke();
-    //sphere(r);
     shape(globe);
   }
 }
