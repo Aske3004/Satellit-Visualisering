@@ -24,7 +24,7 @@ class Earth {
 
   void update() {
     pushMatrix();
-    translate(width*0.5, height*0.5);
+    translate(width/2, height/2);
     rotateY(rotationSpeed);
     shape(globe);
     popMatrix();
