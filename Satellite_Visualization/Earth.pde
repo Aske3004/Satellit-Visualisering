@@ -5,7 +5,7 @@ class Earth {
   float ratio = 10*60;
   
   //real rotation speed of earth in radians
-  float radiansPerSecond = ratio*0.00007/60;
+  float radiansPerSecond = ratio*(0.00007/60);
 
   //multiply radius of earth by 0.031 to get r
   float r = 198;

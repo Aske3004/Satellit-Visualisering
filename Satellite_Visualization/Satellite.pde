@@ -1,12 +1,17 @@
 class Satellite {
   PVector rAxis, position1, position2;
   float speed, rotateAngle, radius, angleB, arcLength;
-  String satLink;
+  String satLink,satName;
+  int satId;
+  long time;
 
-  Satellite(String satLink) {
+  Satellite(String satLink,int satId) {
+    this.satId=satId;
     //JSON api
     JSONObject j = loadJSONObject(satLink);
     JSONArray positionsJson = j.getJSONArray("positions");
+    JSONObject info = j.getJSONObject("info");
+    satName = info.getString("satname");
 
     //get positions of satellite
     JSONObject pos1 = positionsJson.getJSONObject(0);
@@ -15,12 +20,13 @@ class Satellite {
     float sat1Lon = pos1.getFloat("satlongitude");
     float sat1Lat = pos1.getFloat("satlatitude");
     float sat1Alt = pos1.getFloat("sataltitude");
+    time = pos1.getLong("timestamp");
 
     float sat2Lon = pos2.getFloat("satlongitude");
     float sat2Lat = pos2.getFloat("satlatitude");
 
     //radius of satellites orbit from center of earth
-    radius = earth.r + sat1Alt *0.031;
+    radius = earth.r + (sat1Alt *0.031);
 
     //spheric to cartesian coordinates
     float theta1 = radians(sat1Lat);
@@ -34,15 +40,15 @@ class Satellite {
     float x2 = radius * cos(theta2) * cos(phi2);
     float y2 = -radius * sin(theta2);
     float z2 = -radius * cos(theta2) * sin(phi2);
-    PVector position1 = new PVector(x1, y1, z1);
-    PVector position2 = new PVector(x2, y2, z2);
+    position1 = new PVector(x1, y1, z1);
+    position2 = new PVector(x2, y2, z2);
 
     //axis satellite rotates around
     rAxis = position1.cross(position2);
 
     //calculate speed of satellite //<>//
     angleB = PVector.angleBetween(position1, position2);
-    speed = earth.ratio*angleB/60;
+    speed = earth.ratio*(angleB/60);
 }
 
   void update() {
@@ -53,6 +59,8 @@ class Satellite {
     rotateY(earth.rotationSpeed);
     rotate(rotateAngle, rAxis.x, rAxis.y, rAxis.z);
     translate(radius, 0, 0);
+    if(currentSatellite==satId) fill(255,255,0);
+    else fill(255);
     box(5);
     popMatrix();
   }
