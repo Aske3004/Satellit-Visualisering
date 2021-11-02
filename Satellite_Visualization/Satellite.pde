@@ -45,6 +45,7 @@ class Satellite {
 
     //axis satellite rotates around
     rAxis = position1.cross(position2);
+    println(rAxis);
 
     //calculate speed of satellite //<>//
     angleB = PVector.angleBetween(position1, position2);
