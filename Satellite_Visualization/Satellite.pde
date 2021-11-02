@@ -48,6 +48,8 @@ class Satellite {
 
     //calculate speed of satellite //<>//
     angleB = PVector.angleBetween(position1, position2);
+    println("AngleB: ",angleB);
+    
     speed = earth.ratio*(angleB/60);
 }
 

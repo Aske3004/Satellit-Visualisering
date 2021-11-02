@@ -32,10 +32,10 @@ void draw() {
   changeSatellite();
   earth.update();
   sat1.update();
-  //sat2.update();
-  //sat3.update();
-  //sat4.update();
-  //sat5.update();
+  sat2.update();
+  sat3.update();
+  sat4.update();
+  sat5.update();
   time += 10;
   Date date = new Date(time*1000);
   fill(255);
