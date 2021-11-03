@@ -3,7 +3,6 @@
 //Nogle gange vil satelliten følge den 100% rigtige bane og andre gange er den lidt off. Kommer an på, hvor satelliten er i virkeligheden.
 //Vi snakkede om det sammen og blev enige om at vi ikke forstod, hvad fejlen var eller om det overhovedet var vores fejl.
 
-
 import java.util.Date;
 Earth earth;
 Satellite sat1;
