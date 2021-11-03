@@ -19,12 +19,11 @@ void setup() {
   noStroke();
   earth = new Earth();
   earth.create();
-  
-  sat1 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/25544/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM",1);
-  sat2 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/5/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM",2);
-  sat3 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/22/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM",3);
-  sat4 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/29/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM",4);
-  sat5 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/58/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM",5);
+  sat1 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/25544/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM", 1);
+  sat2 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/5/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM", 2);
+  sat3 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/22/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM", 3);
+  sat4 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/29/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM", 4);
+  sat5 = new Satellite("https://api.n2yo.com/rest/v1/satellite/positions/58/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM", 5);
   time = sat1.time;
   timeStart = sat1.time;
 }
@@ -45,11 +44,7 @@ void draw() {
   Date startDate = new Date(timeStart*1000);
   fill(255);
   textSize(20);
-  text(date.toString(),10,70);
-  
+  text(date.toString(), 10, 70);
   textSize(17);
   text("Estimation started at: " + startDate.toString(), 10, 30);
-  
-  
-  
 }

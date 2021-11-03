@@ -1,11 +1,11 @@
-class Satellite {
+class Satellite { //<>// //<>//
   PVector rAxis, position1, position2;
   float speed, rotateAngle, radius, angleB, arcLength;
-  String satLink,satName;
+  String satLink, satName;
   int satId;
   long time;
 
-  Satellite(String satLink,int satId) {
+  Satellite(String satLink, int satId) {
     this.satId=satId;
     //JSON api
     JSONObject j = loadJSONObject(satLink);
@@ -32,7 +32,7 @@ class Satellite {
     float theta1 = radians(sat1Lat);
     float phi1 = radians(sat1Lon)+PI;
     float theta2 = radians(sat2Lat);
-    float phi2 = radians(sat2Lon)+PI; //<>//
+    float phi2 = radians(sat2Lon)+PI;
 
     float x1 = radius * cos(theta1) * cos(phi1);
     float y1 = -radius * sin(theta1);
@@ -45,24 +45,21 @@ class Satellite {
 
     //axis satellite rotates around
     rAxis = position1.cross(position2);
-    println(rAxis);
 
-    //calculate speed of satellite //<>//
+    //calculate speed of satellite
     angleB = PVector.angleBetween(position1, position2);
-    println("AngleB: ",angleB);
-    
     speed = earth.ratio*(angleB/60);
-}
+  }
 
   void update() {
     //rotate satellite around earth
     rotateAngle += speed;
     pushMatrix();
-    translate(width/2,height/2);
+    translate(width/2, height/2);
     rotateY(earth.rotationSpeed);
     rotate(rotateAngle, rAxis.x, rAxis.y, rAxis.z);
     translate(radius, 0, 0);
-    if(currentSatellite==satId) fill(255,255,0);
+    if (currentSatellite==satId) fill(255, 255, 0);
     else fill(255);
     box(5);
     popMatrix();

@@ -1,9 +1,9 @@
 class Earth {
   float rotationSpeed, earthRotate;
-  
+
   //ratio. One second in program ten minutes in real life.
   float ratio = 10*60;
-  
+
   //real rotation speed of earth in radians
   float radiansPerSecond = ratio*(0.00007/60);
 
@@ -30,6 +30,6 @@ class Earth {
     popMatrix();
     rotationSpeed += earthRotate;
     fill(200);
-    noStroke(); 
+    noStroke();
   }
 }
