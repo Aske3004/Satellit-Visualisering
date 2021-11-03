@@ -5,10 +5,10 @@ class Satellite { //<>// //<>//
   int satId;
   long time;
 
-  Satellite(String satLink, int satId) {
+  Satellite(int NORAD, int satId) {
     this.satId=satId;
     //JSON api
-    JSONObject j = loadJSONObject(satLink);
+    JSONObject j = loadJSONObject("https://api.n2yo.com/rest/v1/satellite/positions/"+ NORAD +"/41.702/-76.014/0/2/&apiKey=A3H9WM-AYYDBG-RRDS8C-4SPM");
     JSONArray positionsJson = j.getJSONArray("positions");
     JSONObject info = j.getJSONObject("info");
     satName = info.getString("satname");
